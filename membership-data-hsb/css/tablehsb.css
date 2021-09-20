@@ -1,11 +1,1 @@
-#membership-dashboard-table-hsb > table{
-    border: 5px solid black;
-    border-collapse: collapse;
-    background-color: white;
-}
-#membership-dashboard-table-hsb > table > tbody > tr > td, #membership-dashboard-table-hsb > table > thead > tr > th{
-    border: 2px solid black;
-}
-#table-memberships-hsb{
-    font-weight: 700;
-}
+#membership-dashboard-table-hsb>table{border:5px solid black;border-collapse:collapse;background-color:white}#membership-dashboard-table-hsb>table>tbody>tr>td,#membership-dashboard-table-hsb>table>thead>tr>th{border:2px solid black}#table-memberships-hsb{font-weight:700}

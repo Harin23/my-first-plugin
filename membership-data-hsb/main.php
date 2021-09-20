@@ -31,26 +31,34 @@ function add_admin_menu_item_membership_summary_plugin_hsb(){
     'Export membership data',
     'Export Membership Data', 
     'manage_options', 
-    'export_csv_hsb', 
+    'export_csv_submenuslug_hsb', 
     'export_membership_data_submenu_page_hsb'
     );
-
 }
 
-add_action('admin_enqueue_scripts', 'enqueue_style_hsb');
-function enqueue_style_hsb(){
-    wp_enqueue_style('tablehsb', plugins_url("/css/tablehsb.css", __FILE__));
+add_action('admin_enqueue_scripts', 'enqueue_style_table_page_hsb');
+function enqueue_style_table_page_hsb($hook){
+    if('toplevel_page_membership_summary_plugin_hsb' === $hook){
+        wp_enqueue_style('table_styles_hsb', plugins_url("/css/tablehsb.css", __FILE__));
+    }
+}
+
+add_action('admin_enqueue_scripts', 'enqueue_script_export_submenu_hsb');
+function enqueue_script_export_submenu_hsb($hook){
+    if('membership-data_page_export_csv_submenuslug_hsb' === $hook){
+        wp_enqueue_script('quarterButtons_jsfile_hsb', plugins_url("js/quarterButtonshsb.js", __FILE__));
+        wp_enqueue_style('export_styles_hsb', plugins_url("/css/exporthsb.css", __FILE__));
+    }
 }
  
 function create_and_display_memberships_summary_table_hsb(){
-    // echo 'hello';
     display_membership_summary_table_hsb();
 }
 
-//export data
 function export_membership_data_submenu_page_hsb() {
     render_export_submenu_page_html_hsb();
 }
 
 add_action('admin_init','membership_data_download_csv_hsb');
+
 ?>
