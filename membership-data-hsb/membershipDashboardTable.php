@@ -31,13 +31,13 @@
         if($key !== false){
             $wc_query = get_mp_dashsboard_query_hsb($the_prefix, $membership_ids[$key], false);
             $sub_accs = $wpdb->get_results($wc_query, ARRAY_A)[0];
-            $size=sizeof($results);
-            foreach($results[$key] as $col_name=>$col){
-                if($col_name!='product_id' && array_key_exists($col_name, $sub_accs)){
-                    $results[$size-1][$col_name]+=$sub_accs[$col_name];
-                    $totals[$size-1][$col_name]+=$sub_accs[$col_name];
-                    $totals[$size-1][$col_name]+=$sub_accs[$col_name];
-                    $results[$key][$col_name].='('.$sub_accs[$col_name].')';
+            if(!empty($sub_accs)){
+                $size=sizeof($results);
+                foreach($results[$key] as $col_name=>$col){
+                    if($col_name!='product_id' && array_key_exists($col_name, $sub_accs)){
+                        $results[$size-1][$col_name]+=$sub_accs[$col_name];
+                        $results[$key][$col_name].='('.$sub_accs[$col_name].')';
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 <?php
 
 function get_mp_dashsboard_query_hsb($the_prefix, $product_id, $parent=true){
-    $where_clause = ($parent)? "custom.parent_transaction_id = 0" : "custom.parent_transaction_id <> 0";
+    $where_clause = ($parent)? "custom.parent_transaction_id = 0" : "custom.parent_transaction_id <> 0 AND EXISTS (SELECT test.id FROM {$the_prefix}mepr_transactions test WHERE test.id = custom.parent_transaction_id)";
     return "SELECT
                 custom.product_id,
                 COUNT(custom.ID) AS 'Total',
